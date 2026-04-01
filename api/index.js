@@ -1,4 +1,4 @@
-//api/index.js
+src/miniapp/api/index.js
 const BASE_URL = "http://localhost:3000/api";
 const app = getApp();
 

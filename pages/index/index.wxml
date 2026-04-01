@@ -1,0 +1,129 @@
+<view class="container" style="height: 2000rpx; display: block; box-sizing: border-box">
+
+    <view class="head_box">
+        <image src="/images/first.png" mode="" />
+        <text>{{title}}</text>
+    </view>
+    <view class="weather_box">
+        <view class="weather_text">
+            {{weather}}
+        </view>
+        <view class="flex">
+            <view class="w50">
+                <!-- 天气图 -->
+                <!-- 因无图源，此处关于天气图标变化省略 -->
+                <image wx:if="{{weathertext==='雷'}}" src="/images/weather_lei.png" style="width:300rpx;margin-top: -30rpx;margin-left: 50rpx;" mode="widthFix" />
+                <image wx:if="{{weathertext==='雾'}}" src="/images/weather_lei.png" style="width:300rpx;margin-top: -30rpx;margin-left: 50rpx;" mode="widthFix" />
+            </view>
+            <view class="w50">
+                <view class="location_text">
+                    {{location}}
+                </view>
+                <view class="temperature_text">
+                    {{temperature}}
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="mqtt_box" bind:tap="openDialog">
+        <view>
+            <van-icon wx:if="{{!mqttConnectDialog}}" name="arrow-down" />
+            <van-icon wx:if="{{mqttConnectDialog}}" name="arrow-up" />
+            MQTT服务器
+        </view>
+        <view style="color:{{isConnect?'RGB(0,176,80)':'RGB(192,0,0)'}}">
+            {{isConnect?'已连接':'未连接'}}
+        </view>
+    </view>
+    <!--传感器设备 -->
+    <view class="sensors-system-title">
+        传感器设备
+    </view>
+    <view class="sensors-system" wx:if="{{isPush}}">
+        <view wx:for="{{sensorList}}" class="system-info" data-param="{{item}}" bind:tap="ClickSystem">
+            <view class="sensors-system-box1">
+                <image src="{{item.img}}" style="height: 80rpx;" mode="heightFix" />
+            </view>
+            <view class="sensors-system-box2">
+                <view>
+                    {{item.parameter}}
+                </view>
+                <view>
+                    {{item.value}}{{item.unit}}
+                </view>
+                <view>
+                    {{item.name}}
+                </view>
+            </view>
+            <view class="sensors-system-box3" wx:if="{{item.value>item.top||item.value<item.bottom}}">
+                !
+            </view>
+        </view>
+    </view>
+    <!--其他设备 -->
+    <view class="sensors-system-title">
+        其他设备
+    </view>
+    <view class="other-system" wx:if="{{isSubscr}}" wx:for="{{othersensorlist}}" style="height:{{item.name=='窗帘'?'160rpx':'100rpx'}}">
+        <view style="display: flex; justify-content: space-between;">
+            <view class="flex">
+                <image src="{{item.img}}" style="width: 70rpx;margin: 20rpx 20rpx 0 0;" mode="widthFix" />
+            </view>
+            <view style="color:aliceblue; margin-right: 290rpx;font-size: 45rpx;">{{item.name}}</view>
+            <view>
+                <switch checked="{{item.isopen}}" data-param="{{item}}" bindchange="systemChange" />
+            </view>
+        </view>
+        <view wx:if="{{item.name=='窗帘'}}" style="width: 98%; margin-top: 20rpx;">
+            <van-progress color="#00b050" percentage="{{item.schedule}}" />
+        </view>
+    </view>
+    <view style="height:60rpx"></view>
+</view>
+
+<van-popup show="{{mqttConnectDialog}}" position="bottom" round custom-style="height: 70%; " bind:close="onClose">
+    <view>
+        <van-cell-group>
+            <van-field label="address" model:value="{{ address }}" />
+            <van-field label="port" model:value="{{ port }}" />
+            <van-field label="username" model:value="{{ username }}" />
+            <van-field label="password" type="password" model:value="{{ password }}" />
+        </van-cell-group>
+        <view class="btn_style">
+            <van-button type="primary" color="{{isConnect?'rgb(172, 169, 169)':'black'}}" size="small" bindtap="connectMqtt">
+                连接</van-button>
+            <van-button type="primary" color="{{isConnect?'black':'rgb(172, 169, 169)'}}" size="small" bindtap="disconnectMqtt">
+                断开</van-button>
+        </view>
+        <view>
+            <van-cell-group>
+                <view class="subscribe_text">
+                    订阅
+                </view>
+                <van-field model:value="{{ push }}" placeholder="请输入订阅地址" />
+                <view class="btn_style">
+                    <van-button type="primary" color="{{isPush?'rgb(172, 169, 169)':'black'}}" size="small" bind:tap="addpush">
+                        订阅</van-button>
+                    <van-button type="primary" color="{{isPush?'black':'rgb(172, 169, 169)'}}" size="small" bind:tap="undopush">
+                        取消</van-button>
+                </view>
+                <view class="subscribe_text">
+                    发布
+                </view>
+                <van-field model:value="{{ subscr }}" placeholder="请输入发布地址" />
+                <view class="btn_style">
+                    <van-button type="primary" color="{{isSubscr?'rgb(172, 169, 169)':'black'}}" size="small" bind:tap="subscr">
+                        确认</van-button>
+                    <van-button type="primary" color="{{isSubscr?'black':'rgb(172, 169, 169)'}}" size="small">
+                        修改</van-button>
+                </view>
+            </van-cell-group>
+        </view>
+    </view>
+</van-popup>
+
+<van-dialog use-slot title="设置阈值" show="{{thresholdDialog}}" show-cancel-button bind:close="thresholdDialogClose">
+    <van-field label="上限" model:value="{{top}}" />
+    <van-field label="下限" model:value="{{ bottom }}" />
+
+</van-dialog>

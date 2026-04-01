@@ -1,0 +1,127 @@
+.head_box{
+    display: flex;
+    justify-content: center;
+    padding-top: 120rpx;
+}
+
+.head_box >image{
+    height: 80rpx;
+    width: 80rpx;
+}
+
+.head_box >text{
+    margin-left: 15rpx;
+    font-size: 38rpx;
+    font-weight: 600;
+    line-height: 100rpx;
+    color: rgb(255, 255, 255);
+}
+
+.weather_box{
+    background-color: rgb(172, 169, 169);
+    height: 320rpx;
+    margin: 0rpx 50rpx;
+    box-shadow: 0 8rpx 20rpx 0 rgba(170, 161, 161, 0.3);
+    border-radius: 32rpx;
+}
+
+.weather_text{
+    padding-top: 15rpx;
+    font-size: 29rpx;
+    text-align: center;
+    color: rgb(0, 0, 0);
+}
+
+.w50{
+    width:50%;
+}
+.location_text{
+    padding-top: 45rpx;
+    font-size: rpx;
+    margin-left: 10rpx;
+    color: rgb(71, 71, 71);
+}
+.temperature_text{
+    margin-top: 10rpx;
+    font-size: 80rpx;
+    margin-left: 10rpx;
+    color: black;
+}
+
+.mqtt_box{
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(172, 169, 169);
+    padding:0rpx 30rpx;
+    height: 120rpx;
+    margin: 30rpx 50rpx;
+    box-shadow: 0 8rpx 20rpx 0 rgba(170, 161, 161, 0.3);
+    border-radius: 32rpx;
+    font-size: 45rpx;
+    line-height: 120rpx;
+}
+
+.btn_style{
+    margin:30rpx,0;
+    display:flex;
+    justify-content: space-around;
+}
+.van-button,
+.van-button--default,
+.van-button--small{
+    width: 250rpx;
+}
+
+.subscribe_text{
+    margin-top:30rpx;
+    margin-left:32rpx;
+}
+.sensors-system-title{
+    color: aliceblue;
+    margin: 32rpx 0 32rpx 34rpx;
+    font-size: 36rpx;
+    
+}
+.sensors-system{
+    margin:0 0 30rpx 34rpx;
+    display:flex;
+    color: aliceblue;
+    flex-wrap: wrap;
+}
+.system-info{
+    display: flex;
+    width:330rpx;
+    height: 205rpx;
+    box-shadow: 0 8rpx 20rpx 0 rgba(128, 117, 117, 0.3);
+    border-radius: 32rpx;
+    background-color: rgb(0, 0, 0);
+   margin :0 23rpx 23rpx 0;
+}
+.sensors-system-box1{
+    margin-left: 10rpx;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    width:80rpx;
+}
+.sensors-system-box2 >view{
+    margin-top: 19rpx;
+    width:190rpx;
+}
+
+.sensors-system-box3{
+    color: brown;
+    font-size: 65rpx;
+    font-weight: 600rpx;
+    line-height: 205rpx;
+}
+.other-system{
+    background-color: rgb(0, 0, 0);
+    padding:0rpx 30rpx;
+    margin: 26rpx 50rpx;
+    box-shadow: 0 8rpx 20rpx 0 rgba(143, 142, 142, 0.3);
+    border-radius: 32rpx;
+    font-size: 45rpx;
+    line-height: 100rpx;
+}
+

@@ -1,0 +1,32 @@
+# VS Code 配置
+.vscode/
+*.code-workspace
+*.vs
+
+# Arduino 编译产物
+*.bin
+*.elf
+*.hex
+*.uf2
+build/
+*.ino.cpp
+
+# 日志文件
+*.log
+*.txt
+
+# 敏感信息（密码、配置）
+secrets.h
+credentials.h
+wifi.h
+.env
+
+# 系统垃圾文件
+.DS_Store
+Thumbs.db
+*.bak
+*.tmp
+
+# 可执行文件
+*.exe
+*.out

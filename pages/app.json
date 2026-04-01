@@ -1,0 +1,46 @@
+{
+  "pages":[
+    "pages/index/index","pages/record_crud/record_crud"],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "Weixin",
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationStyle":"custom"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "usingComponents": {
+      "van-icon":"@vant/weapp/icon/index",
+      "van-popup":"@vant/weapp/popup/index",
+      "van-field":"@vant/weapp/field/index",
+      "van-button":"@vant/weapp/button/index",
+      "van-progress":"@vant/weapp/progress/index",
+      "van-dialog":"@vant/weapp/dialog/index"
+  },
+  "permission": {
+      "scope.userLocation": {
+          "desc": "你的位置信息将用于小程序的位置展示"
+      }  
+  },
+  "requiredPrivateInfos": ["getLocation"],
+  "tabBar": {
+    "color": "#ffffff",       
+    "selectedColor": "#ffffff",
+    "backgroundColor": "#161616", 
+    "borderStyle": "black",   
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",               
+        "iconPath": "/images/dog.png", 
+        "selectedIconPath": "/images/dog.png" 
+      },
+      {
+        "pagePath": "pages/record_crud/record_crud",
+        "text": "记录管理",            
+        "iconPath": "/images/more.png",
+        "selectedIconPath": "/images/more.png"
+      }
+    ]
+  }
+}

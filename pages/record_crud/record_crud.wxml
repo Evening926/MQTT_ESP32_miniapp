@@ -1,0 +1,38 @@
+<!--pages/record_crud/record_crud.wxml-->
+<view class="container" style="color: black; height: 1500rpx; position: fixed; width: 752rpx; display: block; box-sizing: content-box; left: 0rpx; top: 0rpx">
+    <view class="head_box">
+        <image src="/images/first.png" mode="" />
+        <text>{{title}}</text>
+    </view>
+
+    <view class="weather_box">
+        <view class="title">历史数据查询
+        <van-icon style="margin-left: 40rpx" bind:tap="selectData" name="replay">
+        </van-icon>
+        </view>
+
+        <picker mode="date" value="{{timeValue}}" start="2024-01-01" end="2034-01-01" bindchange="bindDateChange" style="width: 431rpx; display: block; box-sizing: border-box"> 
+        <view class="picker_box" style="width: 170rpx; display: block; box-sizing: border-box">查询日期: </view >
+        <view class="picker-font-color" style="width: 300rpx; display: block; box-sizing: border-box; position: relative; left: 204rpx; top: -60rpx">{{timeValue}} </view>
+        </picker>
+
+        <picker bindchange="bindDateChange" value="{{index}}" range="{{sensorNameList}}"> 
+        <view class="picker_box" style="width: 170rpx; display: block; box-sizing: border-box; position: relative; top: -55rpx">传感器名: </view>
+        <view class="picker-font-color">{{sensorNameList[sensorNameList]}}</view>
+        </picker>
+     
+
+        <view class="picker_box" style="width: 170rpx; display: block; box-sizing: border-box; position: relative;top: -65rpx">展示模式:</view>
+       
+    </view>
+    <view class="record_box">
+        <view 
+    wx:for="{{sensorInfoList}}" 
+    wx:key="id">
+    <view >名称：{{item.sensor_name}}</view>
+    <view >数值：{{item.sensor_value}}</view>
+    <view >时间：{{item.create_time}}</view>
+  </view>
+    </view>
+
+</view>
